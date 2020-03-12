@@ -1,0 +1,20 @@
+{
+  "short_name": "El Este",
+  "name": "lo que se puede",
+  "icons": [
+    {
+      "src": "tiktok.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "tiktok.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/pwa1.html?source=pwa",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#3653B3"
+}
