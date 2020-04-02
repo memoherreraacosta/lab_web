@@ -1,0 +1,54 @@
+<html>
+<head>
+<title>#revolution#</title>
+<link rel="manifest" href="app.webmanifest">
+</head>
+<body>
+
+      <button id="push">Push</button>
+
+<script>
+
+const pb = document.querySelector('#push');
+
+if (!('Notification' in window)) {
+    console.log('Pues no se pudo');
+  } else if (Notification.permission === 'denied') {
+    console.log('No tienes permiso');
+  } else if (Notification.permission === 'granted') {
+    console.log('Va que va');
+  }
+
+pb.addEventListener('push',() => {
+  console.log("Consolazo botoncito");
+});
+
+if ('serviceWorker' in navigator) {
+     navigator.serviceWorker.register('/sw4.js').then(function(registration) {
+    console.log('ServiceWorker registro : ',registration.scope);
+
+}).catch(function(err) {
+
+    console.log('ServiceWorker error: ', err);
+    });
+}
+
+navigator.serviceWorker.ready.then((sw) => {
+     sw.showNotification('notificacion ', {
+       body: 'El clima es:',
+     })
+     const options = {
+        userVisibleOnly: true,
+        applicationServerKey: "BJ3qgBmkkl8J7NpZx6iQcQLHcBh3oKdq-TKpmPH7X82sFZ-i60v2eu3-wwoKBQGZzR7tPs3EvkaUyjztY44eHUs"
+      };
+     return sw.pushManager.subscribe(options);
+
+   }).then((subscription) => {
+          console.log('subscription: ', JSON.stringify(subscription));
+          return subscription;
+        });
+
+
+</script>
+</body>
+</html>
